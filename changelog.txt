@@ -1,0 +1,8 @@
+0.0.2
++ Added possibility to check mounted drives when they are connected (see "-c"
+  option).
+# Small correction of command line parser.
+# Semaphores are changed to unnamed shared.
+
+0.0.1 
+ First public version.

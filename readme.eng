@@ -1,0 +1,61 @@
+          USBMOUNTD v0.0.1
+
+1. What is USBMOUNTD?
+
+USBMOUNTD is an utility for automatic mounting of the USB media 
+devices in OS/2 LVM. On plugging a new device to the PC USBMOUNTD 
+automatically updates the list of the accessible in OS/2 removable media 
+and assigns the corresponding drive letter. If USB drive file system is dirty
+USBMOUNTD can check it.
+
+2. How to use it ?
+
+ ) LVM based version of OS/2, such as WSeB, eCS or MCP/ACP, 
+   is required to be installed. 
+   If your system use fdisk for drives managment  
+   this utility is not necessary for you.
+b) USB device drivers should be installed correctly. 
+   This utility is not a complete driver set so that either IBM USB 
+   device driver pak or more preferable cw-usbmsd drivers
+   (cw-usbmsd-v1_1.zip archive at http://hobbes.nmsu.edu) have to be installed.
+   If after the installation of the USB drivers and command "lvm /RediscoverPRM" 
+   new device is unaccessible then correct the problem with base USB drivers first
+   and only after that use utilities in this archive.
+c) Unpack archive on a disk (for example, to d:\apps\usbmountd) 
+   and add DEVICE=D:\apps\usbmountd\usbresmg.sys to config.sys file.
+   usbresmg.sys is USB the manager developed by netlabs team.
+d) Reboot your system and then start usbmountd.exe. usbmountd started
+   with "-s" option automatically query USB port, and if any devices 
+   were found updates LVM information.   
+   Usbmountd could be started in detach a mode, for example from 
+   startup.cmd file.
+
+When new devices are detected usbmountd makes beep signals while updating 
+LVM information.
+
+3. A command line parameters.
+usbmountd.exe [-n] [-l logname] [-t msec] [-s] [-?]
+-n silence (makes no beep signals while updating LVM info)
+-s update LVM information on start up.
+-l log filename (can be pipe, for example \pipe\usbmountd.log)
+-t time delay before updating LVM information after detection of a new device. 
+   By default - 600ms
+-c Automatic check mounted device if it has dirty flag.
+-? To show help
+
+4. The author
+
+The author of this utility is Alex Samorukov. Write your comments,
+bugreports and wishes to samm@os2.ru.
+
+5. Big thanks to.
+ 
+ Alex Taylor - author of the LVM toolkit
+ Netlabs team for the USB driver and documentation.
+ Nick Poendaev - for english doc proofreading.
+ 
+6. Todo list.
+
+Further I plan to add the following features:
+1) Possibility to the user to filter which devices would allow to react 
+   (using vendor id and device id).
